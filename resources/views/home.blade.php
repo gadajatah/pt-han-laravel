@@ -22,7 +22,7 @@
                                     All Employee
                                 </div>
                                 <div class="card-body">
-                                    0
+                                    {{ $employees }}
                                 </div>
                             </div>
                         </div>

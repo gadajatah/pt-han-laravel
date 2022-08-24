@@ -6,14 +6,14 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Employees</div>
+                    <div class="card-header">
+                      <a href="{{ route('employee.create') }}" class="btn btn-primary">Add new Data</a>
+                      <a href="{{ route('employees.export') }}" class="btn btn-warning">Export Excel</a>
+                    </div>
                     @if (session()->has('success'))
                     <div class="card-body p-2">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                             </div>
                         </div>
                     @endif
@@ -27,23 +27,27 @@
                                 <th scope="col">Gender</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Handphone</th>
-                                <th scope="col">Religion</th>
                                 <th scope="col">Picture</th>
                                 <th scope="col">Action</th>
                               </tr>
                             </thead>
                             <tbody>
+                              @foreach ($employees as $index => $em)
                               <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
+                                <th scope="row">{{ ++$index }}</th>
+                                <td>{{ $em->nip }}</td>
+                                <td>{{ $em->name }}</td>
+                                <td>{{ $em->gender }}</td>
+                                <td>{{ $em->address }}</td>
+                                <td>{{ $em->handphone }}</td>
+                                <td><img src="{{ asset($em->picture) }}" width="100" height="75" alt=""></td>
+                                <td>
+                                  <a href="{{ route('employee.show', $em->id) }}" class="btn btn-success btn-sm">View</a>
+                                  <a href="{{ route('employee.edit', $em->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                  <a href="{{ route('employee.destroy', $em->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
                               </tr>
+                              @endforeach
                             </tbody>
                           </table>
                     </div>

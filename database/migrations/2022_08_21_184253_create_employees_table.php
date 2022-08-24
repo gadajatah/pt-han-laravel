@@ -20,9 +20,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('address');
             $table->string('handphone');
-            $table->string('religion');
             $table->string('picture');
-            $table->string('path');
             $table->timestamps();
         });
     }
